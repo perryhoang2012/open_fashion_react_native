@@ -27,6 +27,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Home from '@screens/Home';
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
@@ -93,6 +95,7 @@ const App = () => {
           </Section>
           <LearnMoreLinks />
         </View>
+        <Home />
       </ScrollView>
     </SafeAreaView>
   );

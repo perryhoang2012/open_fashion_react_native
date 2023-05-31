@@ -1,0 +1,11 @@
+export const PRIMARY = '#A8715A';
+export const SECONDARY = '#DD8560';
+export const TITLE_ACTIVE = '#000000';
+export const BODY = '#333333';
+export const LABEL = '#555555';
+export const PLACEHOLDER = '#888888';
+export const LINE = '##E0CFBA';
+export const INPUT_BACKGROUND = '#D9DBE9';
+export const BACKGROUND = '#D9DBE9';
+export const OFF_WHITE = '#D9DBE9';
+export const TEXT = '#727272';
