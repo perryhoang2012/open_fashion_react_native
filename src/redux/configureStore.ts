@@ -25,4 +25,5 @@ sagaMiddleware.run(rootSaga);
 export type AppDispatch = typeof store.dispatch;
 export const useReduxDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useReduxSelector: TypedUseSelectorHook<RootState> = useSelector;
+
 export default store;
