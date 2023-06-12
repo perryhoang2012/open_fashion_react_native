@@ -2,6 +2,8 @@ import {Dimensions} from 'react-native';
 export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
   Dimensions.get('window');
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import DeviceInfo from 'react-native-device-info';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export const pxScale = {
   wp(px: number): number {
@@ -23,4 +25,9 @@ export const formatMoney = (number: Number) => {
     style: 'currency',
     currency: 'USD',
   });
+};
+
+export const isSimulator = () => {
+  // https://github.com/react-native-community/react-native-device-info#isemulator
+  return DeviceInfo.isEmulator();
 };

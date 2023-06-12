@@ -1,7 +1,8 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {WHITE} from '@assets/colors';
 import CustomText from '@components/CustomText';
-import productApi from '@api/product';
+import Header from '@components/Header';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 type Props = {};
 
@@ -14,7 +15,8 @@ const Home = (props: Props) => {
   //   getData();
   // }, []);
   return (
-    <View>
+    <View style={styles.container}>
+      <Header />
       <CustomText>Home</CustomText>
     </View>
   );
@@ -22,4 +24,9 @@ const Home = (props: Props) => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: WHITE,
+    flex: 1,
+  },
+});
