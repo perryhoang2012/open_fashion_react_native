@@ -4,6 +4,7 @@
     "baseUrl": "./src/",
     "skipLibCheck": true,
     "paths": {
+      "@api/*": ["api/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
       "@navigators/*": ["navigators/*"],
