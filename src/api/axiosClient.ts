@@ -1,7 +1,8 @@
+import {API_END_POINT} from '@env';
 import axios, {AxiosResponse, InternalAxiosRequestConfig} from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://nest-fashion-api.adaptable.app/',
+  baseURL: API_END_POINT,
   headers: {
     'Content-Type': 'application/json',
   },

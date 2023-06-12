@@ -11,5 +11,6 @@
       "@screens/*": ["screens/*"],
       "@utils/*": ["utils/*"]
     }
-  }
+  },
+  "typeRoots": ["./types"]
 }
