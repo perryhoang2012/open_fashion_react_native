@@ -1,6 +1,6 @@
-import {StyleSheet, View} from 'react-native';
-import React from 'react';
 import CustomText from '@components/CustomText';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 type Props = {};
 
