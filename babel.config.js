@@ -11,6 +11,7 @@ module.exports = {
           '@src': './src',
           '@assets': './src/assets',
           '@navigators': './src/navigators',
+          '@redux': './src/redux',
           '@screens': './src/screens',
           '@utils': './src/utils',
         },

@@ -1,23 +1,36 @@
 import {WHITE} from '@assets/colors';
+import Button from '@components/Button';
 import CustomText from '@components/CustomText';
 import Header from '@components/Header';
-import React from 'react';
+import {useReduxDispatch} from '@redux/configureStore';
+import {setLoading} from '@redux/slices/generalSlice';
+import {fetchListProduct} from '@redux/slices/productSlice';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-type Props = {};
+const Home = () => {
+  const dispatch = useReduxDispatch();
 
-const Home = (props: Props) => {
-  // const getData = async () => {
-  //   const res = await productApi.getAll({filter: 'test'});
-  //   console.log(res);
-  // };
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  // const listProduct = useReduxSelector(state => state.product.listProducts);
+  // const loading = useReduxSelector(state => state.general.loading);
+
+  // console.log(listProduct, loading);
+  const getData = React.useCallback(async () => {
+    dispatch(fetchListProduct());
+  }, [dispatch]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
   return (
     <View style={styles.container}>
       <Header />
-      <CustomText>Home</CustomText>
+      <Button
+        style={{backgroundColor: 'red'}}
+        onPress={() => dispatch(setLoading(true))}>
+        <CustomText>Home</CustomText>
+      </Button>
     </View>
   );
 };

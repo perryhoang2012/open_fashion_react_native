@@ -9,6 +9,7 @@
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@navigators/*": ["navigators/*"],
+      "@redux/*": ["redux/*"],
       "@screens/*": ["screens/*"],
       "@utils/*": ["utils/*"]
     }

@@ -13,6 +13,8 @@ import * as Sentry from '@sentry/react-native';
 import {isSimulator} from '@utils/func';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Provider} from 'react-redux';
+import store from './src/redux/configureStore';
 
 if (!isSimulator()) {
   Sentry.init({
@@ -30,9 +32,11 @@ if (!isSimulator()) {
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <ApplicationNavigator />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <ApplicationNavigator />
+      </SafeAreaProvider>
+    </Provider>
   );
 };
 

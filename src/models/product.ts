@@ -11,3 +11,7 @@ export interface Product extends Timestamp {
   categoryId: number;
   type: number;
 }
+
+export interface ProductSlice {
+  listProducts: Product[];
+}
