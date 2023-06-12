@@ -1,7 +1,7 @@
 import {TEXT} from '@assets/colors';
 import {pxScale} from '@utils/func';
 import React from 'react';
-import {StyleSheet, Text, TextBase} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 type Props = {
   flex?: boolean;

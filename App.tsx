@@ -29,6 +29,20 @@ import {
 
 import Home from '@screens/Home';
 
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://82bc523377444307a4e5d20bbdf246f1@o4505344217317376.ingest.sentry.io/4505344219086848',
+  tracesSampleRate: 1.0,
+  debug: true,
+});
+
+try {
+  //
+} catch (err) {
+  Sentry.captureException(err);
+}
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
@@ -120,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Sentry.wrap(App);

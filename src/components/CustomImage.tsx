@@ -1,13 +1,13 @@
-import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
+import {LOGO} from '@assets/images';
+import PropTypes from 'prop-types';
 import React, {useState} from 'react';
+import {StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {createImageProgress} from 'react-native-image-progress';
 const ImageProgress = createImageProgress(FastImage);
-import PropTypes from 'prop-types';
-import {LOGO} from '@assets/images';
 
 type Props = {
-  style: StyleProp<ViewStyle>;
+  style?: any;
   haveLoading?: boolean;
   source?: string;
 };

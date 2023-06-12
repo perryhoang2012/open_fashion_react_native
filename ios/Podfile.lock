@@ -421,6 +421,9 @@ PODS:
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
+  - RNSentry (5.5.0):
+    - React-Core
+    - Sentry/HybridSDK (= 8.7.1)
   - RNSVG (13.9.0):
     - React-Core
   - SDWebImage (5.11.1):
@@ -429,6 +432,9 @@ PODS:
   - SDWebImageWebPCoder (0.8.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.10)
+  - Sentry/HybridSDK (8.7.1):
+    - SentryPrivate (= 8.7.1)
+  - SentryPrivate (8.7.1)
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -498,6 +504,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -519,6 +526,8 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SDWebImage
     - SDWebImageWebPCoder
+    - Sentry
+    - SentryPrivate
     - SocketRocket
     - YogaKit
 
@@ -599,6 +608,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   Yoga:
@@ -657,9 +668,12 @@ SPEC CHECKSUMS:
   RNGestureHandler: f75d81410b40aaa99e71ae8f8bb7a88620c95042
   RNReanimated: 14739a3bbe63b5219a574b9c0042909384781560
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  RNSentry: 4fb2cd7d2d6cb94423c24884488206ef881da136
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
+  Sentry: 11776f6a25a128808d793d0d41bb7ad873b5ae4f
+  SentryPrivate: b3c448eacdabe9eab7679a2e0af609c608f91572
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 82c9e8f652789f67d98bed5aef9d6653f71b04a9
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
