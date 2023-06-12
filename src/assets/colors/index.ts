@@ -9,3 +9,4 @@ export const INPUT_BACKGROUND = '#D9DBE9';
 export const BACKGROUND = '#D9DBE9';
 export const OFF_WHITE = '#D9DBE9';
 export const TEXT = '#727272';
+export const WHITE = '#FFFFFF';
