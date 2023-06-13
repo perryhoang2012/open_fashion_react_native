@@ -3,7 +3,6 @@ export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} =
   Dimensions.get('window');
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import DeviceInfo from 'react-native-device-info';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export const pxScale = {
   wp(px: number): number {
@@ -20,7 +19,9 @@ export const pxScale = {
 };
 
 export const formatMoney = (number: Number) => {
-  if (Number.isNaN(number)) return '$0';
+  if (Number.isNaN(number)) {
+    return '$0';
+  }
   return number.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',

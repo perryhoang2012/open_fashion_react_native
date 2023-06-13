@@ -28,7 +28,7 @@ const Header = () => {
           style={{
             width: pxScale.wp(79),
             height: pxScale.hp(32),
-            marginTop: pxScale.hp(19),
+            marginTop: pxScale.hp(10),
           }}
         />
       </View>
@@ -50,20 +50,20 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: pxScale.hp(60),
+    height: pxScale.hp(55),
     alignItems: 'center',
     paddingHorizontal: 16,
     justifyContent: 'space-between',
     backgroundColor: WHITE,
   },
   buttonDrawer: {
-    marginTop: pxScale.hp(23),
+    marginTop: pxScale.hp(16),
     flex: 2,
   },
   viewRight: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginTop: pxScale.hp(23),
+    marginTop: pxScale.hp(16),
     flex: 2,
   },
   viewLogo: {

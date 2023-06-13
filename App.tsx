@@ -1,18 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import ApplicationNavigator from '@navigators/ApplicationNavigator';
 import * as Sentry from '@sentry/react-native';
 import {isSimulator} from '@utils/func';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Provider} from 'react-redux';
+import {store, persistor} from '@redux/configureStore';
+import {PersistGate} from 'redux-persist/lib/integration/react';
 
 if (!isSimulator()) {
   Sentry.init({
@@ -30,9 +23,13 @@ if (!isSimulator()) {
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <ApplicationNavigator />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaProvider>
+          <ApplicationNavigator />
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
   );
 };
 
