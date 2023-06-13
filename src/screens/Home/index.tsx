@@ -1,5 +1,7 @@
 import {WHITE} from '@assets/colors';
+import Footer from '@components/Footer';
 import Header from '@components/Header';
+import ItemProduct from '@components/ItemProduct';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
@@ -7,6 +9,10 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header />
+      <View style={{flex: 1}}>
+        <ItemProduct />
+      </View>
+      <Footer />
     </View>
   );
 };
