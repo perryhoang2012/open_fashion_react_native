@@ -6,6 +6,7 @@
     "paths": {
       "@api/*": ["api/*"],
       "@assets/*": ["assets/*"],
+      "@models/*": ["models/*"],
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@navigators/*": ["navigators/*"],

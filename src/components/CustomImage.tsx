@@ -11,11 +11,12 @@ type Props = {
 };
 
 const CustomImage = (props: Props) => {
+  const {source, style} = props;
   return (
     <FastImage
-      source={LOGO}
+      source={source || LOGO}
       resizeMode="stretch"
-      style={[styles.imgStyle, props.style]}
+      style={[styles.imgStyle, style]}
     />
   );
 };
