@@ -6,33 +6,29 @@ import CustomText from '@components/CustomText';
 import FloatingTextInput from '@components/FloatingTextInput';
 import {useCustomNavigation} from '@hooks/useCustomNavigation';
 import {useSafeAreaInsetsCustom} from '@hooks/useSafeAreaInsetsCustom';
-import {useReduxDispatch} from '@redux/configureStore';
-import {login} from '@redux/slices/userSlice';
 import {validateEmail} from '@utils/func';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-const Login = () => {
+const SignUp = () => {
   const navigation = useCustomNavigation();
-  const dispatch = useReduxDispatch();
   const [state, setState] = useState({
     email: '',
     password: '',
+    reEnterPassword: '',
     errorEmail: '',
     errorPassword: '',
+    errorReEnterPassword: '',
     show_password: false,
+    show_re_enter_password: false,
   });
-
-  const onSubmit = () => {
-    dispatch(login());
-  };
 
   return (
     <View
       style={[styles.container, {paddingTop: useSafeAreaInsetsCustom().top}]}>
       <CustomImage source={LOGO} style={styles.imageLogo} />
       <View style={styles.viewBody}>
-        <CustomText title>LOGIN</CustomText>
+        <CustomText title>SIGN UP</CustomText>
 
         <FloatingTextInput
           value={state.email}
@@ -79,26 +75,46 @@ const Login = () => {
             }
           }}
         />
-        <View style={styles.viewButtonForgotPassword}>
-          <Button>
-            <CustomText subTitle14>Forgot password ?</CustomText>
-          </Button>
-        </View>
+
+        <FloatingTextInput
+          value={state.reEnterPassword}
+          onChangeValue={e => setState({...state, password: e})}
+          label="Re-enter password"
+          styleInput={styles.input}
+          showError={state.errorReEnterPassword.length > 0}
+          error={state.errorReEnterPassword}
+          isPassword={!state.show_re_enter_password}
+          showPassword={() => {
+            setState({
+              ...state,
+              show_re_enter_password: !state.show_re_enter_password,
+            });
+          }}
+          actionOnBlur={() => {
+            if (state.errorReEnterPassword.length < 6) {
+              setState({
+                ...state,
+                errorReEnterPassword: 'Password must be 6-12 characters',
+              });
+            } else {
+              setState({
+                ...state,
+                errorReEnterPassword: '',
+              });
+            }
+          }}
+        />
 
         <View style={styles.viewButtonLogin}>
-          <Button
-            px={30}
-            py={8}
-            style={{backgroundColor: TITLE_ACTIVE}}
-            onPress={() => onSubmit()}>
+          <Button px={30} py={8} style={{backgroundColor: TITLE_ACTIVE}}>
             <CustomText medium color={WHITE}>
-              Login
+              SignUp
             </CustomText>
           </Button>
         </View>
         <View style={styles.viewButtonGoToSignIn}>
-          <Button onPress={() => navigation.navigate('SignUp')}>
-            <CustomText small>Create an account?</CustomText>
+          <Button onPress={() => navigation.goBack()}>
+            <CustomText small>Go back Login ?</CustomText>
           </Button>
         </View>
       </View>
@@ -106,7 +122,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {

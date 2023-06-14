@@ -1,10 +1,18 @@
-import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import React, {Dispatch, SetStateAction, useRef} from 'react';
-import {Animated} from 'react-native';
-import {Easing} from 'react-native';
-import {TextInput} from 'react-native';
 import {BODY} from '@assets/colors';
+import {AppIcon} from '@assets/icons';
+import React, {Dispatch, SetStateAction, useRef} from 'react';
+import {
+  Animated,
+  Easing,
+  StyleProp,
+  StyleSheet,
+  TextInput,
+  View,
+  ViewStyle,
+} from 'react-native';
+import Button from './Button';
 import CustomText from './CustomText';
+import IconSvg from './IconSvg';
 
 type Props = {
   label?: string;
@@ -13,10 +21,23 @@ type Props = {
   styleInput?: StyleProp<ViewStyle>;
   error?: string;
   showError?: boolean;
+  isPassword?: boolean;
+  actionOnBlur?: any;
+  showPassword?: Dispatch<SetStateAction<any>>;
 };
 
 const FloatingTextInput = (props: Props) => {
-  const {label, value, onChangeValue, styleInput, error, showError} = props;
+  const {
+    label,
+    value,
+    onChangeValue,
+    styleInput,
+    error,
+    showError,
+    isPassword,
+    actionOnBlur,
+    showPassword,
+  } = props;
 
   const titleActiveSize = 12,
     titleInActiveSize = 15,
@@ -71,21 +92,37 @@ const FloatingTextInput = (props: Props) => {
         useNativeDriver: false,
       }).start();
     }
+    actionOnBlur();
   };
 
   return (
-    <>
+    <View>
       <Animated.View style={[styles.subContainer, styleInput, viewStyles]}>
         <Animated.Text style={[returnAnimatedTitleStyles, styles.textStyle]}>
           {label}
         </Animated.Text>
         <TextInput
+          secureTextEntry={isPassword}
           onChangeText={onChangeValue}
           value={value}
           style={styles.textInputStyle}
           onBlur={onBlur}
           onFocus={onFocus}
         />
+
+        {typeof showPassword === 'function' && (
+          <Button
+            style={styles.buttonShowPassword}
+            onPress={() => {
+              showPassword();
+            }}>
+            <IconSvg
+              source={isPassword ? AppIcon.EYE : AppIcon.HIDE_EYE}
+              width={20}
+              height={30}
+            />
+          </Button>
+        )}
       </Animated.View>
       {showError ? (
         <CustomText small height={20} mt={4}>
@@ -94,7 +131,7 @@ const FloatingTextInput = (props: Props) => {
       ) : (
         <></>
       )}
-    </>
+    </View>
   );
 };
 
@@ -114,5 +151,11 @@ const styles = StyleSheet.create({
     fontFamily: 'TenorSans',
     lineHeight: 19,
     color: BODY,
+  },
+  buttonShowPassword: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    zIndex: 2,
   },
 });

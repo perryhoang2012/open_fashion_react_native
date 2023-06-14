@@ -1,17 +1,22 @@
-import {createSlice} from '@reduxjs/toolkit';
 import {TypeUserSlice} from '@models/user';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: TypeUserSlice = {
-  token: '12312',
+  token: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: () => {},
+    login: () => {
+      console.log('run');
+    },
+    loginSuccess: state => {
+      state.token = '12312312312312312';
+    },
   },
 });
 
-export const {login} = userSlice.actions;
+export const {login, loginSuccess} = userSlice.actions;
 export default userSlice.reducer;
