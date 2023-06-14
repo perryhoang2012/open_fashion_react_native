@@ -6,8 +6,7 @@ import userWatcher from './user';
 // import storageWatcher from "./storage";
 
 function* rootSaga() {
-  yield all([productWatcher()]);
-  yield all([userWatcher()]);
+  yield all([productWatcher(), userWatcher()]);
 }
 
 export default rootSaga;

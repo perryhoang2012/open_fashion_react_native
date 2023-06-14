@@ -1,10 +1,13 @@
 import {setLoading} from '@redux/slices/generalSlice';
-import {login} from '@redux/slices/userSlice';
-import {PayloadAction} from '@reduxjs/toolkit';
-import {ListParams} from 'models';
+import {login, loginSuccess} from '@redux/slices/userSlice';
 import {put, takeEvery} from 'redux-saga/effects';
-function* loginSaga(action: PayloadAction<ListParams>) {
-  yield put(setLoading(true));
+
+function* loginSaga() {
+  try {
+    yield put(setLoading(true));
+    yield put(loginSuccess());
+    yield put(setLoading(false));
+  } catch (e) {}
 }
 
 export default function* userWatcher() {

@@ -4,6 +4,8 @@ import {RouteProp} from '@react-navigation/native';
 
 export type RootStackParamList = {
   Home: undefined;
+  Login: undefined;
+  SignUp: undefined;
 };
 
 export type DrawerParamList = {
