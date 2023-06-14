@@ -1,25 +1,27 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
-import productSlice from './slices/productSlice';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas/root';
-import generalSlice from './slices/generalSlice';
+import {MMKV} from 'react-native-mmkv';
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {
-  persistReducer,
-  persistStore,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  REHYDRATE,
   Storage,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
-import {MMKV} from 'react-native-mmkv';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas/root';
+import generalSlice from './slices/generalSlice';
+import productSlice from './slices/productSlice';
+import userSlice from './slices/userSlice';
 
 const reducer = combineReducers({
   product: productSlice,
   general: generalSlice,
+  user: userSlice,
 });
 
 const storage = new MMKV();
@@ -70,4 +72,4 @@ export const useReduxSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const persistor = persistStore(store);
 
-export {store, persistor};
+export {persistor, store};
