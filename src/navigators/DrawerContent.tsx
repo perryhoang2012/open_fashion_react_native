@@ -1,4 +1,11 @@
-import {LABEL, PLACEHOLDER, SECONDARY, WHITE} from '@assets/colors';
+import {
+  BODY,
+  LABEL,
+  PLACEHOLDER,
+  SECONDARY,
+  TITLE_ACTIVE,
+  WHITE,
+} from '@assets/colors';
 import {AppIcon} from '@assets/icons';
 import Button from '@components/Button';
 import CustomText from '@components/CustomText';
@@ -7,8 +14,15 @@ import {useSafeAreaInsetsCustom} from '@hooks/useSafeAreaInsetsCustom';
 import {pxScale} from '@utils/func';
 import {RootNavigationProp} from 'models/navigation';
 import React, {useState} from 'react';
-import {FlatList, LayoutAnimation} from 'react-native';
-import {Platform, UIManager, StyleSheet, View} from 'react-native';
+import {
+  LayoutAnimation,
+  Platform,
+  StyleSheet,
+  UIManager,
+  View,
+} from 'react-native';
+import BodyDrawer from './components/BodyDrawer';
+import {FooterDrawer} from './components/FooterDrawer';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -33,7 +47,7 @@ const DrawerContent = (props: Props) => {
     navigation.closeDrawer();
   };
 
-  const _renderTabs = () => {
+  const _renderTabs = React.useCallback(() => {
     const tabs = [
       {title: 'Women', value: 'women'},
       {title: 'Man', value: 'man'},
@@ -57,63 +71,28 @@ const DrawerContent = (props: Props) => {
                 LayoutAnimation.Presets.easeInEaseOut,
               );
             }}>
-            <CustomText subTitle14 height={35}>
+            <CustomText
+              subTitle14
+              height={35}
+              color={item.value === tabActive.value ? TITLE_ACTIVE : BODY}
+              style={{height: 35}}>
               {item.title.toUpperCase()}
             </CustomText>
+            {item.value === tabActive.value && (
+              <View style={styles.viewBorderBottomTab}>
+                <View
+                  style={[
+                    styles.viewLozenge,
+                    {backgroundColor: SECONDARY, borderColor: SECONDARY},
+                  ]}
+                />
+              </View>
+            )}
           </Button>
         ))}
       </View>
     );
-  };
-
-  const _renderBody = () => {
-    return (
-      <View style={styles.viewBody}>
-        <FlatList
-          data={[]}
-          renderItem={() => <></>}
-          ListFooterComponent={() => _renderFooter()}
-        />
-      </View>
-    );
-  };
-
-  const _renderFooter = () => {
-    return (
-      <View>
-        <View style={styles.itemFooter}>
-          <IconSvg source={AppIcon.CALL} width={24} height={24} />
-          <CustomText subTitle16 ml={15}>
-            (786) 713-8616
-          </CustomText>
-        </View>
-        <View style={styles.itemFooter}>
-          <IconSvg source={AppIcon.LOCATION} width={24} height={24} />
-          <CustomText subTitle16 ml={15}>
-            Store locator
-          </CustomText>
-        </View>
-        <View style={styles.viewLineAndLozenge}>
-          <View style={styles.line} />
-          <View style={styles.viewLozenge} />
-        </View>
-
-        <View style={styles.containerSocial}>
-          <View style={styles.viewSocial}>
-            <Button>
-              <IconSvg source={AppIcon.TWITTER} width={24} height={24} />
-            </Button>
-            <Button>
-              <IconSvg source={AppIcon.INSTAGRAM} width={24} height={24} />
-            </Button>
-            <Button>
-              <IconSvg source={AppIcon.YOUTUBE} width={24} height={24} />
-            </Button>
-          </View>
-        </View>
-      </View>
-    );
-  };
+  }, [tabActive]);
 
   return (
     <View
@@ -122,7 +101,8 @@ const DrawerContent = (props: Props) => {
         <IconSvg source={AppIcon.CLOSE} width={24} height={24} />
       </Button>
       {_renderTabs()}
-      {_renderBody()}
+      <BodyDrawer />
+      <FooterDrawer />
     </View>
   );
 };
@@ -188,5 +168,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 28,
+  },
+  viewBorderBottomTab: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 0,
   },
 });

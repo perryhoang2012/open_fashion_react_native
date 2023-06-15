@@ -1,11 +1,21 @@
 import {LOGO} from '@assets/images';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {
+  Falsy,
+  ImageStyle,
+  RecursiveArray,
+  RegisteredStyle,
+  StyleSheet,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 type Props = {
-  style?: any;
+  style?:
+    | Falsy
+    | ImageStyle
+    | RegisteredStyle<ImageStyle>
+    | RecursiveArray<Falsy | ImageStyle | RegisteredStyle<ImageStyle>>;
   haveLoading?: boolean;
   source?: string;
 };

@@ -4,7 +4,6 @@ import React, {Dispatch, SetStateAction, useRef} from 'react';
 import {
   Animated,
   Easing,
-  StyleProp,
   StyleSheet,
   TextInput,
   View,
@@ -18,12 +17,12 @@ type Props = {
   label?: string;
   value?: string;
   onChangeValue: Dispatch<SetStateAction<any>>;
-  styleInput?: StyleProp<ViewStyle>;
+  styleInput?: ViewStyle;
   error?: string;
   showError?: boolean;
   isPassword?: boolean;
-  actionOnBlur?: any;
-  showPassword?: Dispatch<SetStateAction<any>>;
+  actionOnBlur?: () => void;
+  showPassword?: () => void;
 };
 
 const FloatingTextInput = (props: Props) => {
@@ -92,7 +91,7 @@ const FloatingTextInput = (props: Props) => {
         useNativeDriver: false,
       }).start();
     }
-    actionOnBlur();
+    typeof actionOnBlur === 'function' && actionOnBlur();
   };
 
   return (
