@@ -10,7 +10,7 @@ import {validateEmail} from '@utils/func';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-const SignUp = () => {
+export const Register = () => {
   const navigation = useCustomNavigation();
   const [state, setState] = useState({
     email: '',
@@ -121,8 +121,6 @@ const SignUp = () => {
     </View>
   );
 };
-
-export default SignUp;
 
 const styles = StyleSheet.create({
   container: {

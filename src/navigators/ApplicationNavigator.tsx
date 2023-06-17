@@ -11,7 +11,7 @@ const ApplicationNavigator = () => {
 
   return (
     <NavigationContainer>
-      {!!token ? <MainNavigator /> : <AuthNavigator />}
+      {!token ? <MainNavigator /> : <AuthNavigator />}
       <AppLoading loading={loading} />
     </NavigationContainer>
   );

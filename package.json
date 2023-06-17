@@ -19,6 +19,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.1",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -26,6 +27,7 @@
     "@sentry/react-native": "^5.5.0",
     "axios": "^1.4.0",
     "react": "18.1.0",
+    "react-hook-form": "^7.44.3",
     "react-native": "0.70.0",
     "react-native-device-info": "^10.6.0",
     "react-native-fast-image": "^8.6.3",
@@ -38,7 +40,8 @@
     "react-native-svg": "^13.9.0",
     "react-redux": "^8.0.7",
     "redux-persist": "^6.0.0",
-    "redux-saga": "^1.2.3"
+    "redux-saga": "^1.2.3",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

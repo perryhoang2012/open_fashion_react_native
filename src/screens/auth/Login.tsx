@@ -4,15 +4,17 @@ import Button from '@components/Button';
 import CustomImage from '@components/CustomImage';
 import CustomText from '@components/CustomText';
 import FloatingTextInput from '@components/FloatingTextInput';
+import {LoginForm} from '@components/auth';
 import {useCustomNavigation} from '@hooks/useCustomNavigation';
 import {useSafeAreaInsetsCustom} from '@hooks/useSafeAreaInsetsCustom';
+import {LoginPayload} from '@models/auth';
 import {useReduxDispatch} from '@redux/configureStore';
 import {login} from '@redux/slices/userSlice';
 import {validateEmail} from '@utils/func';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-const Login = () => {
+export const Login = () => {
   const navigation = useCustomNavigation();
   const dispatch = useReduxDispatch();
   const [state, setState] = useState({
@@ -26,10 +28,15 @@ const Login = () => {
   const onSubmit = () => {
     dispatch(login());
   };
+  const handleLoginSubmit = (payLoad: LoginPayload) => {
+    // do whatever you want with payload
+    console.log('payLoad', payLoad);
+  };
 
   return (
     <View
       style={[styles.container, {paddingTop: useSafeAreaInsetsCustom().top}]}>
+      {/* <LoginForm onSubmit={handleLoginSubmit} /> */}
       <CustomImage source={LOGO} style={styles.imageLogo} />
       <View style={styles.viewBody}>
         <CustomText title>LOGIN</CustomText>
@@ -105,8 +112,6 @@ const Login = () => {
     </View>
   );
 };
-
-export default Login;
 
 const styles = StyleSheet.create({
   container: {
