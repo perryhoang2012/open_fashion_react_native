@@ -9,16 +9,18 @@ import Button from './Button';
 import CustomImage from './CustomImage';
 import IconSvg from './IconSvg';
 import {useCustomNavigation} from '@hooks/useCustomNavigation';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = () => {
-  const navigation = useCustomNavigation();
+  const navigation = useNavigation();
   return (
     <View
       style={[styles.container, {marginTop: useSafeAreaInsetsCustom().top}]}>
       <Button
         style={styles.buttonDrawer}
         onPress={() => {
-          navigation.toggleDrawer();
+          console.log('navigation', navigation?.toggleDrawer);
+          // navigation.toggleDrawer();
         }}>
         <IconSvg source={AppIcon.MENU} width={24} height={24} />
       </Button>
