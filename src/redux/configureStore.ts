@@ -17,11 +17,13 @@ import rootSaga from './sagas/root';
 import generalSlice from './slices/generalSlice';
 import productSlice from './slices/productSlice';
 import userSlice from './slices/userSlice';
+import authReducer from './slices/authSlice';
 
 const reducer = combineReducers({
   product: productSlice,
   general: generalSlice,
   user: userSlice,
+  auth: authReducer,
 });
 
 const storage = new MMKV();

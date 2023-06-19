@@ -1,17 +1,22 @@
+import {TITLE_ACTIVE, WHITE} from '@assets/colors';
 import Button from '@components/Button';
+import CustomText from '@components/CustomText';
 import {InputField} from '@components/form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {useCustomNavigation} from '@hooks/useCustomNavigation';
 import {LoginPayload} from '@models/auth';
 import * as React from 'react';
 import {useForm} from 'react-hook-form';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
 
 export interface LoginFormProps {
   onSubmit?: (payLoad: LoginPayload) => void;
 }
 // login form sẽ giúp mình xử lý lấy value input của user rồi validate thông tin đó có hợp lệ hay không nếu hợp lệ thì componet cha sẽ xử lý cái việc submit đó
 export function LoginForm({onSubmit}: LoginFormProps) {
+  const navigation = useCustomNavigation();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -31,22 +36,59 @@ export function LoginForm({onSubmit}: LoginFormProps) {
     resolver: yupResolver(schema),
   });
   const handleFormSubmit = (payload: LoginPayload) => {
-    console.log('trigger submit');
     onSubmit?.(payload);
   };
   return (
     <View>
-      <InputField control={control} name="email" />
-      <InputField control={control} name="password" />
-      <Button
-        onPress={handleSubmit(handleFormSubmit)}
-        style={{
-          width: 100,
-          height: 40,
-          borderWidth: 1,
-          borderRadius: 5,
-        }}
+      <InputField control={control} name="email" label="EMAIL" />
+      <InputField
+        control={control}
+        name="password"
+        isPassword={true}
+        label="Password"
       />
+      <View style={styles.viewButtonForgotPassword}>
+        <Button>
+          <CustomText subTitle14>Forgot password ?</CustomText>
+        </Button>
+      </View>
+
+      <View style={styles.viewButtonLogin}>
+        <Button
+          px={30}
+          py={8}
+          style={{backgroundColor: TITLE_ACTIVE}}
+          onPress={handleSubmit(handleFormSubmit)}>
+          <CustomText medium color={WHITE}>
+            Login
+          </CustomText>
+        </Button>
+      </View>
+      <View style={styles.viewButtonGoToSignIn}>
+        <Button onPress={() => navigation.navigate('SignUp')}>
+          <CustomText small>Create an account?</CustomText>
+        </Button>
+      </View>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  input: {
+    marginTop: 20,
+  },
+  viewButtonForgotPassword: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginTop: 30,
+  },
+  viewButtonLogin: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 25,
+  },
+  viewButtonGoToSignIn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 25,
+  },
+});
