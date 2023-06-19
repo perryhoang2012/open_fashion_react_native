@@ -3,23 +3,21 @@ import {LoginPayload} from '@models/auth';
 import {authActions} from '@redux/slices/authSlice';
 import {call, fork, put, take} from 'redux-saga/effects';
 import {MMKV} from 'react-native-mmkv';
-import authApi from '@api/auth';
-import {User} from '@models/user';
+import authApi, {LoginResponse} from '@api/auth';
 const storage = new MMKV();
+
 function* handleLogin(payload: LoginPayload) {
   try {
-    const user: User = yield call(authApi.login, payload);
-    console.log('user', user);
+    const res: LoginResponse = yield call(authApi.login, payload);
+    const {user, access_token} = res;
     yield put(authActions.loginSuccess(user));
-    // save data to storage
-    // storage.set('access_token', user);
+    storage.set('access_token', access_token);
   } catch (error) {
     console.log('Failed to login', error);
   }
 }
 function* handleLogout() {
   storage.delete('access_token');
-  // redirect to login
 }
 function* watchLoginFlow() {
   while (true) {

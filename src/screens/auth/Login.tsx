@@ -13,7 +13,6 @@ export const Login = () => {
   const dispatch = useReduxDispatch();
   const handleLoginSubmit = (payLoad: LoginPayload) => {
     dispatch(authActions.login(payLoad));
-    console.log('payLoad', payLoad);
   };
 
   return (

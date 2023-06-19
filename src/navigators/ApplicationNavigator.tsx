@@ -4,14 +4,17 @@ import * as React from 'react';
 import AuthNavigator from './AuthNavigator';
 import MainNavigator from './MainNavigator';
 import {NavigationContainer} from '@react-navigation/native';
+import {MMKV} from 'react-native-mmkv';
 
 const ApplicationNavigator = () => {
+  const storage = new MMKV();
+
   const loading = useReduxSelector(state => state.general.loading);
-  const token = useReduxSelector(state => state.user.token);
+  const token = storage.getString('access_token');
 
   return (
     <NavigationContainer>
-      {!token ? <MainNavigator /> : <AuthNavigator />}
+      {Boolean(token) ? <MainNavigator /> : <AuthNavigator />}
       <AppLoading loading={loading} />
     </NavigationContainer>
   );
