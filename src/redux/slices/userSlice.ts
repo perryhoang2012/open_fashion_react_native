@@ -9,9 +9,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: () => {
-      console.log('run');
-    },
+    login: () => {},
     loginSuccess: state => {
       state.token = '12312312312312312';
     },

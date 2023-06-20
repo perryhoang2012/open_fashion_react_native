@@ -9,6 +9,7 @@ import {useReduxDispatch} from '@redux/configureStore';
 import {authActions} from '@redux/slices/authSlice';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
 export const Login = () => {
   const dispatch = useReduxDispatch();
   const handleLoginSubmit = (payLoad: LoginPayload) => {

@@ -43,3 +43,4 @@ export const validateEmail = (email: string) => {
     return false;
   }
 };
+export const regexPhone = new RegExp(/^\+?1?(\d{3})(\d{3})(\d{4})$/g);
