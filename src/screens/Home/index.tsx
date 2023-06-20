@@ -1,7 +1,5 @@
 import {WHITE} from '@assets/colors';
-import Button from '@components/Button';
 import CustomImage from '@components/CustomImage';
-import CustomText from '@components/CustomText';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
 import React, {useRef} from 'react';
@@ -44,6 +42,7 @@ const Home = () => {
   }, []);
   return (
     <View style={styles.container}>
+      <Header />
       <ScrollView style={{flex: 1}}>
         <View>
           <Carousel
