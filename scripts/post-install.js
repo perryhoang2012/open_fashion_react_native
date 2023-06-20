@@ -19,6 +19,10 @@ const os = require('os');
     cwd: 'ios',
     onlyPlatforms: ['darwin'],
   },
+
+  {
+    command: 'patch-package',
+  },
 ]
   .filter(
     ({onlyPlatforms}) =>
