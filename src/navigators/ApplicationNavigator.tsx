@@ -7,7 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const ApplicationNavigator = () => {
   const loading = useReduxSelector(state => state.general.loading);
-  const token = useReduxSelector(state => state.user.token);
+  const token = useReduxSelector(state => state.auth.token);
 
   return (
     <NavigationContainer>

@@ -1,5 +1,4 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {MMKV} from 'react-native-mmkv';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {
   FLUSH,
@@ -8,41 +7,27 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-  Storage,
   persistReducer,
   persistStore,
 } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/root';
+import authReducer from './slices/authSlice';
 import generalSlice from './slices/generalSlice';
 import productSlice from './slices/productSlice';
 import userSlice from './slices/userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const reducer = combineReducers({
   product: productSlice,
   general: generalSlice,
   user: userSlice,
+  auth: authReducer,
 });
-
-const storage = new MMKV();
-export const reduxStorage: Storage = {
-  setItem: (key, value) => {
-    storage.set(key, value);
-    return Promise.resolve(true);
-  },
-  getItem: key => {
-    const value = storage.getString(key);
-    return Promise.resolve(value);
-  },
-  removeItem: key => {
-    storage.delete(key);
-    return Promise.resolve();
-  },
-};
 
 const persistConfig = {
   key: 'root',
-  storage: reduxStorage,
+  storage: AsyncStorage,
 };
 
 export type RootState = ReturnType<typeof reducer>;
