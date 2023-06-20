@@ -1,14 +1,14 @@
 import {TEXT} from '@assets/colors';
 import {pxScale} from '@utils/func';
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, ViewStyle} from 'react-native';
 
 type Props = {
   flex?: boolean;
   center?: boolean;
   left?: boolean;
   right?: boolean;
-  style?: any;
+  style?: ViewStyle;
   pa?: number;
   px?: number;
   py?: number;
@@ -37,7 +37,7 @@ type Props = {
   color?: string;
   numberOfLines?: number;
   italic?: boolean;
-  children?: any;
+  children?: React.ReactNode;
 };
 
 const CustomText: React.FC<Props> = props => {

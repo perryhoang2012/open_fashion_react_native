@@ -1,5 +1,11 @@
 import React from 'react';
-import {Keyboard, Platform, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Keyboard,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 import {TouchableOpacity as ButtonThird} from 'react-native-gesture-handler';
 
 type Props = {
@@ -14,7 +20,7 @@ type Props = {
   bottom?: boolean;
   space?: string;
   wrap?: boolean;
-  style?: any;
+  style?: ViewStyle;
   pa?: number;
   px?: number;
   py?: number;
@@ -37,8 +43,7 @@ type Props = {
   disabled?: boolean;
   onPress?: () => void;
   opacity?: number;
-  props?: any;
-  children?: any;
+  children?: React.ReactNode;
   hitSlop?: {
     left?: number;
     right?: number;
