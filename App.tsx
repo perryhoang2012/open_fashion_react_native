@@ -7,6 +7,8 @@ import {FormProvider, useForm} from 'react-hook-form';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/lib/integration/react';
+import Toast from 'react-native-toast-message';
+import ToastSettings from '@utils/ToastSetting';
 
 if (!isSimulator()) {
   Sentry.init({
@@ -31,6 +33,8 @@ const App = () => {
         <SafeAreaProvider>
           <FormProvider {...methods}>
             <ApplicationNavigator />
+            <Toast />
+            <ToastSettings />
           </FormProvider>
         </SafeAreaProvider>
       </PersistGate>

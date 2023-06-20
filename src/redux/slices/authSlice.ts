@@ -1,5 +1,5 @@
 import {LoginResponse} from '@api/auth';
-import {LoginPayload} from '@models/auth';
+import {LoginPayload, RegisterPayload} from '@models/auth';
 import {User} from '@models/user';
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 export interface AuthState {
@@ -19,7 +19,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, _action: PayloadAction<LoginPayload>) {
-      console.log('run');
       state.logging = true;
     },
     loginSuccess(state, action: PayloadAction<LoginResponse>) {
@@ -37,6 +36,8 @@ const authSlice = createSlice({
       state.currentUser = undefined;
       state.token = undefined;
     },
+
+    // register(_action: PayloadAction<RegisterPayload>) {},
   },
 });
 

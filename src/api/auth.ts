@@ -4,6 +4,7 @@ import {User} from '@models/user';
 export interface LoginResponse {
   user: User;
   access_token: string;
+  message?: string;
 }
 const authApi = {
   register(data: RegisterPayload): Promise<any> {

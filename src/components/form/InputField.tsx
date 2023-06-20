@@ -44,7 +44,6 @@ export function InputField({
     name,
     control,
   });
-  console.log('error', error);
   const {EYE, HIDE_EYE} = AppIcon;
   const [showPassword, setShowPassword] = useState(false);
   const titleActiveSize = 12,

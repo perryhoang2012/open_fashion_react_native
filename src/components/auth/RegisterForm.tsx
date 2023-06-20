@@ -4,27 +4,28 @@ import CustomText from '@components/CustomText';
 import {InputField} from '@components/form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useCustomNavigation} from '@hooks/useCustomNavigation';
-import {LoginPayload} from '@models/auth';
-import {loginSchema} from '@utils/ValidationSchema';
+import {RegisterPayload} from '@models/auth';
+import {registerSchema} from '@utils/ValidationSchema';
 import * as React from 'react';
 import {useForm} from 'react-hook-form';
 import {StyleSheet, View} from 'react-native';
 
-export interface LoginFormProps {
-  onSubmit?: (payLoad: LoginPayload) => void;
+export interface RegisterFormProps {
+  onSubmit?: (payLoad: RegisterPayload) => void;
 }
-// login form sẽ giúp mình xử lý lấy value input của user rồi validate thông tin đó có hợp lệ hay không nếu hợp lệ thì componet cha sẽ xử lý cái việc submit đó
-export function LoginForm({onSubmit}: LoginFormProps) {
+export function RegisterForm({onSubmit}: RegisterFormProps) {
   const navigation = useCustomNavigation();
 
-  const {control, handleSubmit} = useForm<LoginPayload>({
+  const {control, handleSubmit} = useForm<RegisterPayload>({
     defaultValues: {
       email: '',
       password: '',
+      phone: '',
+      confirmPassword: '',
     },
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(registerSchema),
   });
-  const handleFormSubmit = (payload: LoginPayload) => {
+  const handleFormSubmit = (payload: RegisterPayload) => {
     onSubmit?.(payload);
   };
   return (
@@ -32,16 +33,22 @@ export function LoginForm({onSubmit}: LoginFormProps) {
       <InputField control={control} name="email" label="Email" />
       <InputField
         control={control}
+        name="phone"
+        isPassword={true}
+        label="Phone Number"
+      />
+      <InputField
+        control={control}
         name="password"
         isPassword={true}
         label="Password"
       />
-      <View style={styles.viewButtonForgotPassword}>
-        <Button>
-          <CustomText subTitle14>Forgot password ?</CustomText>
-        </Button>
-      </View>
-
+      <InputField
+        control={control}
+        name="confirmPassword"
+        isPassword={true}
+        label="ReEnter Password"
+      />
       <View style={styles.viewButtonLogin}>
         <Button
           px={30}
@@ -49,13 +56,13 @@ export function LoginForm({onSubmit}: LoginFormProps) {
           style={{backgroundColor: TITLE_ACTIVE}}
           onPress={handleSubmit(handleFormSubmit)}>
           <CustomText medium color={WHITE}>
-            Login
+            Sign Up
           </CustomText>
         </Button>
       </View>
       <View style={styles.viewButtonGoToSignIn}>
-        <Button onPress={() => navigation.navigate('SignUp')}>
-          <CustomText small>Create an account?</CustomText>
+        <Button onPress={() => navigation.goBack()}>
+          <CustomText small>Go back Login ?</CustomText>
         </Button>
       </View>
     </View>
